@@ -10,3 +10,8 @@ before_install:
   - gcloud config set project multi-k8s-248410
   - gcloud config set compute-zone us-central1-a
   - gcloud container clusters get-credentials multi-cluster
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker build -t silefort/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true silefort/react-test npm run test
