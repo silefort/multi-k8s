@@ -7,8 +7,8 @@ docker push silefort/multi-server:latest
 docker push silefort/multi-worker:latest
 
 docker push silefort/multi-client:$SHA
-docker push silefort/multi-client:$SHA
-docker push silefort/multi-client:$SHA
+docker push silefort/multi-server:$SHA
+docker push silefort/multi-worker:$SHA
 
 kubectl apply -f k8s
 kubectl set image deployments/client-deployment client=silefort/multi-client:$SHA
