@@ -1,0 +1,18 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: multi-k8s-slef-fr-tls
+spec:
+  secretName: multi-k8s-slef-fr
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: multi-k8s.slef.fr
+  dnsNames:
+    - multi-k8s.slef.fr
+  acme:
+    config:
+      - http01:
+          ingressCLass: nginx
+        domains:
+          - multi-k8s.slef.fr
